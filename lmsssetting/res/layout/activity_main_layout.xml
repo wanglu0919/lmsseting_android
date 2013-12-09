@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_content_bg"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+   
+   
+    <TextView
+        android:id="@+id/main_tv_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dip"
+        android:text="创联物联网测试"
+        android:textColor="@color/bule_text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/main_rl_loginform"
+        android:layout_width="fill_parent"
+        android:layout_height="88.0dip"
+        android:layout_below="@+id/main_tv_appname"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="15.0dip"
+        android:layout_marginTop="15.0dip"
+        android:background="@drawable/g_round_box_bg" >
+
+        <TextView
+            android:id="@+id/main_tv_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="43dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10.0dip"
+            android:gravity="center_vertical"
+            android:text="IP"
+            android:textColor="@color/tv_nomal_color" />
+
+        <EditText
+            android:id="@+id/main_login_et_tel"
+            android:layout_width="fill_parent"
+            android:layout_height="43dip"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@+id/main_tv_tel"
+            android:background="@android:color/transparent"
+            android:inputType="phone" />
+
+        <View
+            android:id="@+id/main_horizontal_devider"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_centerInParent="true"
+            android:background="#E6E6E4" />
+
+        <TextView
+            android:id="@+id/main_tv_vcode"
+            android:layout_width="wrap_content"
+            android:layout_height="43dip"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/main_horizontal_devider"
+            android:layout_marginLeft="10.0dip"
+            android:gravity="center_vertical"
+            android:text="端口"
+            android:textColor="@color/tv_nomal_color" />
+
+        <EditText
+            android:id="@+id/main_et_vecode"
+            android:layout_width="fill_parent"
+            android:layout_height="43dip"
+            android:layout_below="@+id/main_horizontal_devider"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@+id/main_tv_vcode"
+            android:background="@android:color/transparent"
+            android:inputType="number" />
+    </RelativeLayout>
+
+   
+    <Button
+        android:id="@+id/main_btn_connect"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_rl_loginform"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="80dip"
+        android:background="@drawable/main_login_bg_selector"
+        android:text="连接"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dip"
+        android:text="无锡中秀科技有限公司"
+        android:textColor="@color/tv_nomal_color"
+        android:textStyle="bold" />
+
+    <com.challentec.lmsseting.view.LoadProgressView
+        android:id="@+id/main_pb_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

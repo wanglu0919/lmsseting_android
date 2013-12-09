@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView style="@style/Item_ScrollView_Sytle" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/g_round_box_bg"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:background="@drawable/setting_up_selector"
+                    android:clickable="true" >
+
+                    <TextView
+                        style="@style/Item_Left_TextView_Style"
+                        android:text="锁梯控制" />
+
+                    <com.challentec.lmsseting.view.SwitchButton
+                        android:id="@+id/home_sw_recover_last_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip" />
+                </RelativeLayout>
+
+                <View style="@style/Item_Devide_Solid_Line_Style" />
+
+                <RelativeLayout
+                    android:id="@+id/main_rl_loginform"
+                    android:layout_width="fill_parent"
+                    android:layout_height="88.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_marginRight="15.0dip"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@drawable/g_round_box_bg" >
+
+                    <TextView
+                        android:id="@+id/main_tv_tel"
+                        android:layout_width="50dip"
+                        android:layout_height="43dip"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="3.0dip"
+                        android:gravity="center_vertical|right"
+                        android:text="主板II" />
+
+                    <EditText
+                        android:id="@+id/main_login_et_tel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="43dip"
+                        android:layout_marginLeft="3dip"
+                        android:layout_toRightOf="@+id/main_tv_tel"
+                        android:background="@android:color/transparent"
+                        android:inputType="phone" />
+
+                    <View
+                        android:id="@+id/main_horizontal_devider"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:layout_centerInParent="true"
+                        android:background="#E6E6E4" />
+
+                    <TextView
+                        android:id="@+id/main_tv_vcode"
+                        android:layout_width="50dip"
+                        android:layout_height="43dip"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/main_horizontal_devider"
+                        android:layout_marginLeft="3.0dip"
+                        android:gravity="center_vertical"
+                        android:text="采集板II" />
+
+                    <EditText
+                        android:id="@+id/main_et_vecode"
+                        android:layout_width="fill_parent"
+                        android:layout_height="43dip"
+                        android:layout_below="@+id/main_horizontal_devider"
+                        android:layout_marginLeft="3dip"
+                        android:layout_toRightOf="@+id/main_tv_vcode"
+                        android:background="@android:color/transparent"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/main_btn_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="20dip"
+                    android:background="@drawable/main_login_bg_selector"
+                    android:text="设置"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/g_round_box_bg"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/monitor_rl_drive_state"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:background="@drawable/setting_up_selector"
+                    android:clickable="true" >
+
+                    <TextView
+                        style="@style/Item_Left_TextView_Style"
+                        android:text="楼层设置" />
+
+                    <ImageView style="@style/Item_ImageMore_Sytle" />
+                </RelativeLayout>
+
+                <View style="@style/Item_Devide_Solid_Line_Style" />
+
+                <RelativeLayout
+                    android:id="@+id/monitor_rl_port_state"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:background="@drawable/setting_down_selector"
+                    android:clickable="true" >
+
+                    <TextView
+                        style="@style/Item_Left_TextView_Style"
+                        android:text="状态查询" />
+
+                    <ImageView style="@style/Item_ImageMore_Sytle" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.challentec.lmsseting.view.LoadProgressView
+        android:id="@+id/monitor_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" >
+    </com.challentec.lmsseting.view.LoadProgressView>
+
+</RelativeLayout>
