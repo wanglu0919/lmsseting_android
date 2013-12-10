@@ -49,11 +49,11 @@ public class FloorItemAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup arg2) {
-		Floor port = floors.get(position);
+		Floor floor = floors.get(position);
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			convertView = View.inflate(context,
-					R.layout.activity_floor_setting, null);
+					R.layout.floor_set_item, null);
 
 			viewHolder = new ViewHolder();
 
@@ -64,7 +64,7 @@ public class FloorItemAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 
-		viewHolder.itemName.setText(port.getItemName());
+		viewHolder.itemName.setText(floor.getItemName());
 
 		return convertView;
 

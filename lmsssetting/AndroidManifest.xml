@@ -27,8 +27,19 @@
         
           <!-- 选择设备 -->
         <activity
-            android:name="com.challentec.lmssseting.app.SettingActivity"
+            android:name="com.challentec.lmssseting.ui.SettingActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!-- 楼层设置 -->
+            <activity
+            android:name="com.challentec.lmssseting.ui.FloorSetActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            <!-- 状态查询 -->
+             <activity
+            android:name="com.challentec.lmssseting.ui.StateQuearyActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            
+            
+        
     </application>
 
 </manifest>
