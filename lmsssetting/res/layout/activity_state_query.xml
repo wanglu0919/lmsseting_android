@@ -18,12 +18,12 @@
         android:dividerHeight="1dip" >
     </ListView>
 
-    <com.challentec.lmsseting.view.LoadProgressView
+    <com.challentec.lmssseting.view.LoadProgressView
         android:id="@+id/params_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" >
-    </com.challentec.lmsseting.view.LoadProgressView>
+    </com.challentec.lmssseting.view.LoadProgressView>
 
 </RelativeLayout>

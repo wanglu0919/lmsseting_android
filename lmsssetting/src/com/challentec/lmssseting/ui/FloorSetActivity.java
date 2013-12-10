@@ -6,9 +6,9 @@ import java.util.List;
 import android.view.View;
 import android.widget.GridView;
 
-import com.challentec.lmsseting.bean.Floor;
 import com.challentec.lmssseting.adapter.FloorItemAdapter;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.Floor;
 
 /**
  * 楼层设置

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.challentec.lmsseting.bean.StateParamsItem;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.StateParamsItem;
 
 /**
  * 楼层显示设置数据适配器

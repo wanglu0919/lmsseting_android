@@ -29,7 +29,7 @@
                         style="@style/Item_Left_TextView_Style"
                         android:text="锁梯控制" />
 
-                    <com.challentec.lmsseting.view.SwitchButton
+                    <com.challentec.lmssseting.view.SwitchButton
                         android:id="@+id/home_sw_recover_last_out"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -151,12 +151,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.challentec.lmsseting.view.LoadProgressView
+    <com.challentec.lmssseting.view.LoadProgressView
         android:id="@+id/monitor_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" >
-    </com.challentec.lmsseting.view.LoadProgressView>
+    </com.challentec.lmssseting.view.LoadProgressView>
 
 </RelativeLayout>

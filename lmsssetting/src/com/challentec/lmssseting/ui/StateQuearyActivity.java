@@ -6,9 +6,9 @@ import java.util.List;
 import android.view.View;
 import android.widget.ListView;
 
-import com.challentec.lmsseting.bean.StateParamsItem;
 import com.challentec.lmssseting.adapter.ParamsItemAdapter;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.StateParamsItem;
 
 /**
  * 状态查询

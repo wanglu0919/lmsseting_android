@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.challentec.lmsseting.bean.Floor;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.Floor;
 
 /**
  * 端口状态项目适配器

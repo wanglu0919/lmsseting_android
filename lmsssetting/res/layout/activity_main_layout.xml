@@ -102,7 +102,7 @@
         android:textColor="@color/tv_nomal_color"
         android:textStyle="bold" />
 
-    <com.challentec.lmsseting.view.LoadProgressView
+    <com.challentec.lmssseting.view.LoadProgressView
         android:id="@+id/main_pb_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

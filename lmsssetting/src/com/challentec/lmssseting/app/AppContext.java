@@ -7,7 +7,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.challentec.lmsseting.util.StringUtils;
+import com.challentec.lmssseting.util.StringUtils;
 
 /**
  * 全局应用程序类：用于保存和调用全局应用配置及访问网络数据 app上下文对象
