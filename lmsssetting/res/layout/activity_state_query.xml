@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/tab_content_bg"
     android:orientation="vertical" >
 
-  
-</LinearLayout>
+    <ListView
+        android:id="@+id/params_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dip"
+        android:background="@drawable/g_round_box_bg"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/nomal_devider_color"
+        android:listSelector="@drawable/setting_down_selector"
+        android:dividerHeight="1dip" >
+    </ListView>
+
+    <com.challentec.lmsseting.view.LoadProgressView
+        android:id="@+id/params_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" >
+    </com.challentec.lmsseting.view.LoadProgressView>
+
+</RelativeLayout>
