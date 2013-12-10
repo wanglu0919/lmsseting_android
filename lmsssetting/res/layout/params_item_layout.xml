@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dip"
+    android:background="@drawable/setting_down_selector"
+    android:clickable="false"
+    android:paddingBottom="10dip"
+    android:paddingLeft="2dip"
+    android:paddingRight="2dip"
+    android:paddingTop="10dip" >
+
+    <TextView
+        android:id="@+id/params_item_name"
+        style="@style/Item_Left_TextView_Style"
+     
+         />
+
+    <TextView
+        android:id="@+id/params_item_value"
+        style="@style/Item_Right_TextView_Style" 
+       
+        />
+
+  
+
+</RelativeLayout>
