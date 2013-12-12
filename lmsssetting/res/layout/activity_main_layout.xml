@@ -41,13 +41,13 @@
             android:textColor="@color/tv_nomal_color" />
 
         <EditText
-            android:id="@+id/main_login_et_tel"
+            android:id="@+id/main_login_ip"
             android:layout_width="fill_parent"
             android:layout_height="43dip"
             android:layout_marginLeft="3dip"
             android:layout_toRightOf="@+id/main_tv_tel"
             android:background="@android:color/transparent"
-            android:inputType="phone" />
+             />
 
         <View
             android:id="@+id/main_horizontal_devider"
@@ -68,7 +68,7 @@
             android:textColor="@color/tv_nomal_color" />
 
         <EditText
-            android:id="@+id/main_et_vecode"
+            android:id="@+id/main_login_port"
             android:layout_width="fill_parent"
             android:layout_height="43dip"
             android:layout_below="@+id/main_horizontal_devider"

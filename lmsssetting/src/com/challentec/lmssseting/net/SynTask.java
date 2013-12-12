@@ -6,8 +6,11 @@ import java.net.UnknownHostException;
 
 import android.os.Message;
 
+import com.challentec.lmssseting.api.Protocol;
 import com.challentec.lmssseting.app.AppConfig;
 import com.challentec.lmssseting.app.AppContext;
+import com.challentec.lmssseting.bean.ResponseData;
+import com.challentec.lmssseting.exception.ConnectServerTimeOutException;
 import com.challentec.lmssseting.exception.ReadDataException;
 import com.challentec.lmssseting.util.HandlerMessage;
 import com.challentec.lmssseting.util.LogUtil;
@@ -87,7 +90,7 @@ public class SynTask {
 			public void run() {
 
 				try {
-					socketClient.writeHexStr(hexStr);
+					socketClient.writeHexStr(hexStr.toLowerCase());
 					if (handler != null) {
 						Message msg = handler.obtainMessage();
 						msg.what = SynHandler.SEND_SUCCESS;
@@ -155,8 +158,13 @@ public class SynTask {
 						}
 						LogUtil.i(LogUtil.LOG_TAG_READ, "读取数据等待中....");
 						String responseData = socketClient.readData();// 该方法为阻塞方法，阻塞读取服务器返回数据
+						LogUtil.i(LogUtil.LOG_TAG_READ, "读到了数据:" + responseData);
+
 						if (responseData != null) {
-							
+							ResponseData rd = Protocol.pase(responseData);
+							if (rd != null) {
+								HandlerMessage.handlerMessage(context, rd);
+							}
 						}
 					} catch (IOException e) {
 
@@ -178,7 +186,8 @@ public class SynTask {
 	 * 
 	 * @author 泰得利通 wanglu
 	 */
-	public void connectServer(final SocketClient socketClient,final String ip,final int port) {
+	public void connectServer(final SocketClient socketClient, final String ip,
+			final int port) {
 
 		if (!context.isNetworkConnected()) {// 检查网络连接
 
@@ -194,9 +203,7 @@ public class SynTask {
 			public void run() {
 				try {
 
-					
-
-					socketClient.connect(ip,port);
+					socketClient.connect(ip, port);
 					if (handler != null) {
 						handler.sendEmptyMessage(SynHandler.CONNECTION_SUCCESS);
 					}
@@ -215,11 +222,17 @@ public class SynTask {
 						handler.sendEmptyMessage(SynHandler.IOEXCEPTION);
 					}
 
-				} 
+				} catch (ConnectServerTimeOutException e) {// 连接服务器超时
+
+					e.printStackTrace();
+
+					if (handler != null) {
+						handler.sendEmptyMessage(SynHandler.CONET_SEVER_TIME_OUT);
+					}
+				}
 			}
 		}).start();
 
 	}
-
 
 }

@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import com.challentec.lmssseting.exception.ConnectServerTimeOutException;
 import com.challentec.lmssseting.exception.ReadDataException;
 import com.challentec.lmssseting.util.DataPaseUtil;
 import com.challentec.lmssseting.util.LogUtil;
@@ -54,9 +55,10 @@ public class SocketClient {
 	 *            端口
 	 * @throws UnknownHostException
 	 * @throws IOException
+	 * @throws ConnectServerTimeOutException 
 	 */
 	public void connect(String ip, int port) throws UnknownHostException,
-			IOException {
+			IOException, ConnectServerTimeOutException {
 
 		boolean flag = true;
 
@@ -86,8 +88,9 @@ public class SocketClient {
 				LogUtil.i(LogUtil.LOG_TAG_CONNECT, "连接服务器异常");
 
 			} catch (SocketTimeoutException e) {
-
 				LogUtil.i(LogUtil.LOG_TAG_CONNECT, "连接服务器超时");
+				throw new ConnectServerTimeOutException();
+				
 			}
 
 		}
@@ -119,7 +122,7 @@ public class SocketClient {
 	 * @throws ReadDataException
 	 */
 	public String readData() throws IOException, ReadDataException {
-		byte buffer[] = new byte[1024];
+		byte buffer[] = new byte[1400];
 		int len = is.read(buffer);// 输入流读取数据
 		String responseData = null;
 		if (len > 0) {

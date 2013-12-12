@@ -64,35 +64,38 @@ public final class R {
         public static final int title_save_selector=0x7f020018;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001c;
+        public static final int action_settings=0x7f09001f;
         public static final int base_main_llview=0x7f090001;
         public static final int floor_gv_setting=0x7f090002;
-        public static final int head_btn_back=0x7f090013;
-        public static final int head_btn_save=0x7f090017;
-        public static final int head_tv_title=0x7f090014;
-        public static final int home_sw_recover_last_out=0x7f09000c;
+        public static final int head_btn_back=0x7f090016;
+        public static final int head_btn_save=0x7f09001a;
+        public static final int head_tv_title=0x7f090017;
         public static final int in_head_toolbar=0x7f090000;
         public static final int main_btn_connect=0x7f09000a;
-        public static final int main_btn_login=0x7f09000d;
-        public static final int main_et_vecode=0x7f090009;
+        public static final int main_btn_login=0x7f090010;
+        public static final int main_et_vecode=0x7f09000f;
         public static final int main_horizontal_devider=0x7f090007;
-        public static final int main_login_et_tel=0x7f090006;
+        public static final int main_login_et_tel=0x7f09000e;
+        public static final int main_login_ip=0x7f090006;
+        public static final int main_login_port=0x7f090009;
         public static final int main_pb_load=0x7f09000b;
         public static final int main_rl_loginform=0x7f090004;
         public static final int main_tv_appname=0x7f090003;
         public static final int main_tv_tel=0x7f090005;
         public static final int main_tv_vcode=0x7f090008;
-        public static final int monitor_pb=0x7f090010;
-        public static final int params_item_name=0x7f09001a;
-        public static final int params_item_value=0x7f09001b;
-        public static final int params_lv=0x7f090011;
-        public static final int params_pb=0x7f090012;
-        public static final int pb_head=0x7f090015;
-        public static final int pb_load=0x7f090018;
-        public static final int pb_load_tv=0x7f090019;
-        public static final int pb_text=0x7f090016;
-        public static final int setting_rl_floor_set=0x7f09000e;
-        public static final int setting_rl_state_query=0x7f09000f;
+        public static final int monitor_pb=0x7f090013;
+        public static final int params_item_name=0x7f09001d;
+        public static final int params_item_value=0x7f09001e;
+        public static final int params_lv=0x7f090014;
+        public static final int params_pb=0x7f090015;
+        public static final int pb_head=0x7f090018;
+        public static final int pb_load=0x7f09001b;
+        public static final int pb_load_tv=0x7f09001c;
+        public static final int pb_text=0x7f090019;
+        public static final int setting_rl_floor_set=0x7f090011;
+        public static final int setting_rl_state_query=0x7f090012;
+        public static final int setting_tv_lock_floor=0x7f09000c;
+        public static final int setting_wb_lock_floor=0x7f09000d;
     }
     public static final class layout {
         public static final int activity_base_layout=0x7f030000;

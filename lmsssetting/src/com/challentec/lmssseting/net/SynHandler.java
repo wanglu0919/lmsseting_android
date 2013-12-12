@@ -60,7 +60,7 @@ public class SynHandler extends Handler {
 			break;
 
 		case CONET_SEVER_TIME_OUT:// 连接服务器操时
-			onConnectServerTimeOUt("连接服务器超市");
+			onConnectServerTimeOUt("连接服务器超时");
 
 			break;
 

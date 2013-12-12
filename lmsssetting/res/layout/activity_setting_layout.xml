@@ -26,11 +26,12 @@
                     android:clickable="true" >
 
                     <TextView
+                        android:id="@+id/setting_tv_lock_floor"
                         style="@style/Item_Left_TextView_Style"
                         android:text="锁梯控制" />
 
                     <com.challentec.lmssseting.view.SwitchButton
-                        android:id="@+id/home_sw_recover_last_out"
+                        android:id="@+id/setting_wb_lock_floor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

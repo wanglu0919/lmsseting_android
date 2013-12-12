@@ -3,9 +3,13 @@ package com.challentec.lmssseting.ui;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.view.SwitchButton;
 
 /**
  * 设置
@@ -17,6 +21,8 @@ public class SettingActivity extends BaseActivity {
 	private RelativeLayout setting_rl_floor_set;
 
 	private RelativeLayout setting_rl_state_query;
+	private TextView setting_tv_lock_floor;
+	private SwitchButton setting_wb_lock_floor;
 
 	@Override
 	protected void addListeners() {
@@ -44,6 +50,15 @@ public class SettingActivity extends BaseActivity {
 
 			}
 		});
+		
+		
+		setting_wb_lock_floor.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				updateLockTextView(isChecked);
+			}
+		});
 	}
 
 	@Override
@@ -53,6 +68,21 @@ public class SettingActivity extends BaseActivity {
 				.findViewById(R.id.setting_rl_floor_set);// 楼层设置
 		setting_rl_state_query = (RelativeLayout) mainView
 				.findViewById(R.id.setting_rl_state_query);// 状态查询
+		setting_wb_lock_floor=(SwitchButton) mainView.findViewById(R.id.setting_wb_lock_floor);
+		setting_tv_lock_floor=(TextView) mainView.findViewById(R.id.setting_tv_lock_floor);//锁体控制
+		updateLockTextView(setting_wb_lock_floor.isChecked());
+		
+	}
+	
+	private void updateLockTextView(boolean isLockFloor){
+		
+		if(isLockFloor){
+			setting_tv_lock_floor.setText("锁梯");	
+		}else{
+			setting_tv_lock_floor.setText("解锁");
+		}
+		
+		
 	}
 
 	@Override

@@ -22,6 +22,7 @@ public class LogUtil {
 	public static final String LOG_TAG_AUTO_CONNECT="AUTO_CONNECT";//自动重连
 	public static final String LOG_TAG_BEAT="BEAT";//心跳
 	public static final String LOG_TAG_SEND="SEND";//发送数据
+	public static final String LOG_TAG_WRITE_DATA="LOG_TAG_WRITE_DATA";//写出的数据
 	public static final String LOG_TAG_REPONSE_DATA="RESPONSE_DATA";//返回数据
 	
 	

@@ -218,4 +218,12 @@ public class AppManager {
 
 	}*/
 
+	/**
+	 * 获取mac地址
+	 *wanglu 泰得利通 
+	 * @return
+	 */
+	public String getMac(){
+		return "12345678901234";
+	}
 }
