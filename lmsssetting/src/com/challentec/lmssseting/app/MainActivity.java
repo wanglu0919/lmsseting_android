@@ -11,12 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.challentec.lmssseting.api.ClinetApi;
 import com.challentec.lmssseting.api.Protocol;
+import com.challentec.lmssseting.bean.ResponseData;
+import com.challentec.lmssseting.listener.AppConectStateListener;
+import com.challentec.lmssseting.listener.AppMessageLinstener;
 import com.challentec.lmssseting.net.SocketClient;
 import com.challentec.lmssseting.net.SynHandler;
 import com.challentec.lmssseting.net.SynTask;
+import com.challentec.lmssseting.reciver.AppConnectStateRecever;
+import com.challentec.lmssseting.reciver.AppMessageRecever;
 import com.challentec.lmssseting.ui.SettingActivity;
-import com.challentec.lmssseting.util.LogUtil;
 import com.challentec.lmssseting.util.UIHelper;
 import com.challentec.lmssseting.view.LoadProgressView;
 
@@ -29,6 +34,9 @@ public class MainActivity extends Activity {
 	private LoadProgressView load_view;
 	private SynTask synTask;
 	private AppContext appContext;
+
+	private AppMessageRecever appMessageRecever;
+	private AppConnectStateRecever appConnectStateRecever;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,92 @@ public class MainActivity extends Activity {
 
 	}
 
+	@Override
+	protected void onStart() {
+
+		super.onStart();
+		registAppMessageReceiver();
+		registAppContectStateReceiver();
+
+	}
+
+	@Override
+	protected void onStop() {
+
+		super.onStop();
+		unregisterReceiver(appMessageRecever);
+		unregisterReceiver(appConnectStateRecever);
+	}
+
+	/**
+	 * 注册消息 wanglu 泰得利通
+	 */
+	private void registAppMessageReceiver() {
+
+		appMessageRecever = appManager.registerAppMessageRecever(this);
+		appMessageRecever.setAppMessageLinstener(new MainAppMessageListener());
+
+	}
+
+	/**
+	 * 网络状态注册监听 wanglu 泰得利通
+	 */
+	private void registAppContectStateReceiver() {
+
+		appConnectStateRecever = appManager
+				.registerAppConnectStateRecever(this);
+
+		appConnectStateRecever
+				.setAppConectStateListener(new MainAppContectedStateListener());
+
+	}
+
+	/**
+	 * 消息监听
+	 * 
+	 * @author wanglu 泰得利通
+	 * 
+	 */
+	private class MainAppMessageListener implements AppMessageLinstener {
+
+		@Override
+		public void onRespnseDataReceve(ResponseData responseData) {
+			if (responseData.getFunctionCode().equals(Protocol.S_C_REGIST)) {// 注册结果
+				String reslutData = responseData.getHexdata();
+				if (reslutData.equals("01")) {
+					UIHelper.showToask(appContext, "注册成功");
+					Intent intent = new Intent(MainActivity.this,
+							SettingActivity.class);
+					startActivity(intent);
+					appManager.startBeat();// 开始心跳
+				} else if (reslutData.equals("02")) {
+					UIHelper.showToask(appContext, "注册失败");
+
+				}
+
+			}
+
+		}
+
+	}
+
+	/**
+	 * 连接发生改变
+	 * 
+	 * @author wanglu 泰得利通
+	 * 
+	 */
+	private class MainAppContectedStateListener implements
+			AppConectStateListener {
+
+		@Override
+		public void connectStateChanged() {
+			connectServer();
+
+		}
+
+	}
+
 	/**
 	 * 连接服务器
 	 * 
@@ -54,10 +148,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onConnectSuccess(String msg) {
-/*
-			Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-			startActivity(intent);
-			*/
+		
 			regist();
 		}
 
@@ -86,17 +177,16 @@ public class MainActivity extends Activity {
 		});
 
 	}
-	
+
 	/**
-	 * 注册
-	 *wanglu 泰得利通
+	 * 注册 wanglu 泰得利通
 	 */
-	private void regist(){
-		String apiData=Protocol.HEAD+"0002"+"00"+appManager.getMac()+"0000";
-		LogUtil.i(LogUtil.LOG_TAG_WRITE_DATA, apiData);
+	private void regist() {
+
+		String apiData = ClinetApi.getRegistData(AppManager.getIMEI(this));
+
 		synTask.writeData(apiData);
-		
-		
+
 	}
 
 	/**
@@ -105,9 +195,11 @@ public class MainActivity extends Activity {
 	private void connectServer() {
 		load_view.setVisibility(View.VISIBLE);
 		load_view.setProgressText("正在连接服务器...");
-		synTask.connectServer(SocketClient.getSocketClient(), main_login_ip
-				.getText().toString(), Integer.parseInt(main_login_port
-				.getText().toString()));// ;连接服务器
+		SocketClient.IP=main_login_ip
+				.getText().toString();
+		SocketClient.PORT=Integer.parseInt(main_login_port
+				.getText().toString());
+		synTask.connectServer(SocketClient.getSocketClient());// ;连接服务器
 	}
 
 	/**

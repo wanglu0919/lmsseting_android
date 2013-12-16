@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.ResponseData;
 import com.challentec.lmssseting.view.SwitchButton;
 
 /**
@@ -93,5 +94,11 @@ public class SettingActivity extends BaseActivity {
 	@Override
 	protected int getMainViewLayoutId() {
 		return R.layout.activity_setting_layout;
+	}
+
+	@Override
+	protected void onReceveData(ResponseData responseData) {
+		// TODO Auto-generated method stub
+		
 	}
 }

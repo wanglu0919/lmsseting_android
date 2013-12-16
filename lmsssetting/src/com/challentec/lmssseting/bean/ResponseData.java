@@ -1,12 +1,18 @@
 package com.challentec.lmssseting.bean;
 
+import java.io.Serializable;
+
 /**
  * 服务器返回数据封装 
  * @author lu.wang
  *
  */
-public class ResponseData {
+public class ResponseData implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3920990126856174738L;
 	private int len;//长度
 	private String functionCode;//功能
 	private String serialNumber;//序列号

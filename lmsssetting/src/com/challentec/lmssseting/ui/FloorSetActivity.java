@@ -9,6 +9,7 @@ import android.widget.GridView;
 import com.challentec.lmssseting.adapter.FloorItemAdapter;
 import com.challentec.lmssseting.app.R;
 import com.challentec.lmssseting.bean.Floor;
+import com.challentec.lmssseting.bean.ResponseData;
 
 /**
  * 楼层设置
@@ -58,5 +59,13 @@ public class FloorSetActivity extends BaseActivity {
 	@Override
 	protected int getMainViewLayoutId() {
 		return R.layout.activity_floor_setting;
+	}
+
+
+
+	@Override
+	protected void onReceveData(ResponseData responseData) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -14,7 +14,7 @@ public class AppConfig {
 	private static AppConfig appConfig;
 	private static final String SP_CONFIG = "sp_config";// SharePrefence配置文件名称
 	
-	public static final int POLL_INTERVAL_TIME = 10;// 心跳时间间隔
+	public static final int POLL_INTERVAL_TIME = 20;// 心跳时间间隔
 	public static final int AUTO_CONNECT_TIME = 5;// 自动重练时间
 	public static final String SERVER__HANG_TIME_KEY = "server_hang_time_key";// 服务端挂了时间
 	private static SharedPreferences sp;

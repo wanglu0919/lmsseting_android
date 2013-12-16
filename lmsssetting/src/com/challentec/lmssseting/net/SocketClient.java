@@ -27,6 +27,9 @@ public class SocketClient {
 	private OutputStream os;
 	private static SocketClient instance;
 	private static final int CONNECT_SERVER_TIME_OUT = 10000;// 连接服务器超时时间
+	public static String  IP;
+	public static int PORT;
+	
 
 	private SocketClient() {
 	}
@@ -57,7 +60,7 @@ public class SocketClient {
 	 * @throws IOException
 	 * @throws ConnectServerTimeOutException 
 	 */
-	public void connect(String ip, int port) throws UnknownHostException,
+	public void connect() throws UnknownHostException,
 			IOException, ConnectServerTimeOutException {
 
 		boolean flag = true;
@@ -69,7 +72,7 @@ public class SocketClient {
 				socket = null;
 				socket = new Socket();
 
-				socket.connect(new InetSocketAddress(ip, port),
+				socket.connect(new InetSocketAddress(IP, PORT),
 						CONNECT_SERVER_TIME_OUT);
 
 				is = socket.getInputStream();

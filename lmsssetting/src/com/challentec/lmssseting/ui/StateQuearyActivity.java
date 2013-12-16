@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.challentec.lmssseting.adapter.ParamsItemAdapter;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.ResponseData;
 import com.challentec.lmssseting.bean.StateParamsItem;
 
 /**
@@ -18,7 +20,7 @@ import com.challentec.lmssseting.bean.StateParamsItem;
  */
 public class StateQuearyActivity extends BaseActivity {
 
-	private ListView params_lv;
+	private GridView params_lv;
 	private List<StateParamsItem> stateParamsItems;
 	private ParamsItemAdapter paramsItemAdapter;
 	private String itemName[] = new String[] { "安全回路", "厅门锁", "上强迫减速", "下强迫减速",
@@ -31,7 +33,7 @@ public class StateQuearyActivity extends BaseActivity {
 
 	@Override
 	protected void initMainView(View mainView) {
-		params_lv = (ListView) mainView.findViewById(R.id.params_lv);
+		params_lv = (GridView) mainView.findViewById(R.id.state_gv_setting);
 
 		initData();
 	}
@@ -60,6 +62,12 @@ public class StateQuearyActivity extends BaseActivity {
 	@Override
 	protected int getMainViewLayoutId() {
 		return R.layout.activity_state_query;
+	}
+
+	@Override
+	protected void onReceveData(ResponseData responseData) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

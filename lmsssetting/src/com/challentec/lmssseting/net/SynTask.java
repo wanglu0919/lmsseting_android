@@ -7,7 +7,6 @@ import java.net.UnknownHostException;
 import android.os.Message;
 
 import com.challentec.lmssseting.api.Protocol;
-import com.challentec.lmssseting.app.AppConfig;
 import com.challentec.lmssseting.app.AppContext;
 import com.challentec.lmssseting.bean.ResponseData;
 import com.challentec.lmssseting.exception.ConnectServerTimeOutException;
@@ -26,20 +25,20 @@ public class SynTask {
 	private SynHandler handler;//
 	private SocketClient socketClient;
 	private AppContext context;
-	private AppConfig appConfig;
+	
 
 	public SynTask(SynHandler handler, AppContext context) {
 		this.handler = handler;
 		this.handler.setContext(context);
 		this.context = context;
-		appConfig = AppConfig.getAppConfig(context);
+		
 		socketClient = SocketClient.getSocketClient();
 	}
 
 	public SynTask(AppContext context) {
 
 		this.context = context;
-		appConfig = AppConfig.getAppConfig(context);
+		
 		socketClient = SocketClient.getSocketClient();
 	}
 
@@ -186,8 +185,7 @@ public class SynTask {
 	 * 
 	 * @author 泰得利通 wanglu
 	 */
-	public void connectServer(final SocketClient socketClient, final String ip,
-			final int port) {
+	public void connectServer(final SocketClient socketClient) {
 
 		if (!context.isNetworkConnected()) {// 检查网络连接
 
@@ -203,7 +201,7 @@ public class SynTask {
 			public void run() {
 				try {
 
-					socketClient.connect(ip, port);
+					socketClient.connect();
 					if (handler != null) {
 						handler.sendEmptyMessage(SynHandler.CONNECTION_SUCCESS);
 					}

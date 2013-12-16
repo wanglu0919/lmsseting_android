@@ -5,25 +5,15 @@
     android:background="@color/tab_content_bg"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/params_lv"
+    <GridView
+        android:id="@+id/state_gv_setting"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_height="fill_parent"
         android:layout_margin="10dip"
-        android:background="@drawable/g_round_box_bg"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@color/nomal_devider_color"
-        android:listSelector="@drawable/setting_down_selector"
-        android:dividerHeight="1dip" >
-    </ListView>
-
-    <com.challentec.lmssseting.view.LoadProgressView
-        android:id="@+id/params_pb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" >
-    </com.challentec.lmssseting.view.LoadProgressView>
+        android:horizontalSpacing="3dip"
+        android:numColumns="6"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dip" >
+    </GridView>
 
 </RelativeLayout>

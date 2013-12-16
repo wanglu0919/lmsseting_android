@@ -1,11 +1,20 @@
 package com.challentec.lmssseting.app;
 
 import java.util.Stack;
+import java.util.UUID;
 
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.telephony.TelephonyManager;
+
+import com.challentec.lmssseting.net.SocketClient;
+import com.challentec.lmssseting.reciver.AppConnectStateRecever;
+import com.challentec.lmssseting.reciver.AppMessageRecever;
+import com.challentec.lmssseting.service.BeatService;
+import com.challentec.lmssseting.util.LogUtil;
+import com.challentec.lmssseting.util.PollingUtils;
 
 /**
  * 
@@ -124,23 +133,24 @@ public class AppManager {
 	 */
 	public void appExit(Context context) {
 		try {
-			//stopPolling();// 停止心跳
-			//PollingUtils.stopPollingService(context, LoginPollingService.class, LoginPollingService.ACTION);
-		//	PollingUtils.stopPollingService(context, AutoConnectPollingService.class, AutoConnectPollingService.ACTION);
-		//	SocketClient.getSocketClient().dispose();//释放连接资源
-			
+			stopBeat();
+			// PollingUtils.stopPollingService(context,
+			// LoginPollingService.class, LoginPollingService.ACTION);
+			// PollingUtils.stopPollingService(context,
+			// AutoConnectPollingService.class,
+			// AutoConnectPollingService.ACTION);
+			SocketClient.getSocketClient().dispose();// 释放连接资源
+
 			finishAllActivity();
 			ActivityManager activityMgr = (ActivityManager) context
 					.getSystemService(Context.ACTIVITY_SERVICE);
 			activityMgr.restartPackage(context.getPackageName());
 			System.exit(0);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	/**
 	 * 获取手机IMEI
@@ -148,11 +158,12 @@ public class AppManager {
 	 * @author 泰得利通 wanglu
 	 * @return
 	 */
-	public String getIMEI() {
+	public static String getIMEI(Context context) {
 
 		TelephonyManager telephonyManager = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
-		return telephonyManager.getDeviceId();
+		return telephonyManager.getDeviceId() == null ? UUID.randomUUID() + ""
+				: telephonyManager.getDeviceId();
 
 	}
 
@@ -164,16 +175,16 @@ public class AppManager {
 	 *            功能代码
 	 * @return
 	 */
-	/*
+
 	public AppMessageRecever registerAppMessageRecever(Context context) {
 
-		//AppMessageRecever appMessageRecever = new AppMessageRecever();
-		//IntentFilter filter = new IntentFilter();
-		//filter.addAction(AppMessageRecever.ACTION_STRING);
-		//context.registerReceiver(appMessageRecever, filter);
-		return null;
+		AppMessageRecever appMessageRecever = new AppMessageRecever();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(AppMessageRecever.ACTION_STRING);
+		context.registerReceiver(appMessageRecever, filter);
+		return appMessageRecever;
 
-	}*/
+	}
 
 	/**
 	 * 注册APP连接状态监听
@@ -182,7 +193,7 @@ public class AppManager {
 	 * @param context
 	 * @return
 	 */
-	/*
+
 	public AppConnectStateRecever registerAppConnectStateRecever(Context context) {
 
 		AppConnectStateRecever appConnectStateRecever = new AppConnectStateRecever();
@@ -192,38 +203,38 @@ public class AppManager {
 		return appConnectStateRecever;
 
 	}
-*/
+
 	/**
 	 * 启动心跳
 	 * 
 	 * @author 泰得利通 wanglu
 	 */
-	/*
-	public void startPolling() {
+
+	public void startBeat() {
 		LogUtil.i(LogUtil.LOG_TAG_BEAT, "开始心跳");
 		PollingUtils.startPollingService(context, AppConfig.POLL_INTERVAL_TIME,
-				PollingService.class, PollingService.ACTION);
-	}*/
+				BeatService.class, BeatService.ACTION);
+	}
 
 	/**
 	 * 停止心跳
 	 * 
 	 * @author 泰得利通 wanglu
 	 */
-	/*
-	public void stopPolling() {
-		LogUtil.i(LogUtil.LOG_TAG_BEAT, "停止心跳");
-		PollingUtils.stopPollingService(context, PollingService.class,
-				PollingService.ACTION);
 
-	}*/
+	public void stopBeat() {
+		LogUtil.i(LogUtil.LOG_TAG_BEAT, "停止心跳");
+		PollingUtils.stopPollingService(context, BeatService.class,
+				BeatService.ACTION);
+
+	}
 
 	/**
-	 * 获取mac地址
-	 *wanglu 泰得利通 
+	 * 获取mac地址 wanglu 泰得利通
+	 * 
 	 * @return
 	 */
-	public String getMac(){
+	public static String getMac() {
 		return "12345678901234";
 	}
 }

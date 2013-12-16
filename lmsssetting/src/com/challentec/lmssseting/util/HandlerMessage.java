@@ -1,8 +1,10 @@
 package com.challentec.lmssseting.util;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.challentec.lmssseting.bean.ResponseData;
+import com.challentec.lmssseting.reciver.AppMessageRecever;
 
 /**
  * 分发消息数据类
@@ -21,13 +23,12 @@ public class HandlerMessage {
 	 */
 	public static void handlerMessage(Context context, ResponseData responseData) {
 		
-		/*
+		
 		Intent intent = new Intent();
 		intent.setAction(AppMessageRecever.ACTION_STRING);
 		intent.putExtra(AppMessageRecever.DATA_KEY, responseData);
 		context.sendBroadcast(intent);// 通知广播
-		*/
-
+		
 	}
 
 	/**

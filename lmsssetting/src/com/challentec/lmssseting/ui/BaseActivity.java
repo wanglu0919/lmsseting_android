@@ -1,6 +1,8 @@
 package com.challentec.lmssseting.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,8 +12,20 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.challentec.lmssseting.api.ClinetApi;
+import com.challentec.lmssseting.api.Protocol;
+import com.challentec.lmssseting.app.AppContext;
 import com.challentec.lmssseting.app.AppManager;
 import com.challentec.lmssseting.app.R;
+import com.challentec.lmssseting.bean.ResponseData;
+import com.challentec.lmssseting.listener.AppConectStateListener;
+import com.challentec.lmssseting.listener.AppMessageLinstener;
+import com.challentec.lmssseting.net.SocketClient;
+import com.challentec.lmssseting.net.SynHandler;
+import com.challentec.lmssseting.net.SynTask;
+import com.challentec.lmssseting.reciver.AppConnectStateRecever;
+import com.challentec.lmssseting.reciver.AppMessageRecever;
+import com.challentec.lmssseting.util.UIHelper;
 
 /**
  * activity基类
@@ -28,17 +42,150 @@ public abstract class BaseActivity extends Activity {
 	private FrameLayout base_main_llview;// 中间视图parentView
 	protected View mainView;// 中间视图view
 	protected AppManager appManager;
+	private AppConnectStateRecever appConnectStateRecever;
+
+	protected AppMessageRecever appMessageRecever;
+	protected SynTask SynTask;
+	protected AppContext appContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_base_layout);
+		appContext = (AppContext) getApplication();
 		appManager = AppManager.getManager(this);
 		appManager.addActivity(this);
 		findViews();
 		initUI();
 		addListeners();
 
+		SynTask = new SynTask(new ConnectSynHandler(), appContext);
+
+	}
+
+	/**
+	 * 连接服务器
+	 * 
+	 * @author wanglu 泰得利通
+	 * 
+	 */
+	@SuppressLint("HandlerLeak")
+	private class ConnectSynHandler extends SynHandler {
+
+		@Override
+		public void onConnectSuccess(String msg) {
+			super.onConnectSuccess(msg);
+			regist();
+		}
+
+		@Override
+		public void onFianly() {
+
+			super.onFianly();
+
+		}
+
+	}
+
+	/**
+	 * 注册 wanglu 泰得利通
+	 */
+	private void regist() {
+		pb_text.setVisibility(View.VISIBLE);
+		pb_text.setText("注册中");
+		String apiData = ClinetApi.getRegistData(AppManager.getIMEI(this));
+
+		SynTask.writeData(apiData);
+
+	}
+
+	/**
+	 * 网络状态注册监听 wanglu 泰得利通
+	 */
+	private void registAppContectStateReceiver() {
+
+		appConnectStateRecever = appManager
+				.registerAppConnectStateRecever(this);
+
+		appConnectStateRecever
+				.setAppConectStateListener(new AppContectedStateListener());
+
+	}
+
+	/**
+	 * 注册消息 wanglu 泰得利通
+	 */
+	private void registAppMessageReceiver() {
+
+		appMessageRecever = appManager.registerAppMessageRecever(this);
+		appMessageRecever.setAppMessageLinstener(new MainAppMessageListener());
+
+	}
+
+	/**
+	 * 连接发生改变
+	 * 
+	 * @author wanglu 泰得利通
+	 * 
+	 */
+	private class AppContectedStateListener implements AppConectStateListener {
+
+		@Override
+		public void connectStateChanged() {
+
+			connectServer();// 连接服务器
+
+		}
+
+	}
+
+	/**
+	 * 消息监听
+	 * 
+	 * @author wanglu 泰得利通
+	 * 
+	 */
+	private class MainAppMessageListener implements AppMessageLinstener {
+
+		@Override
+		public void onRespnseDataReceve(ResponseData responseData) {
+			if (responseData.getFunctionCode().equals(Protocol.S_C_REGIST)) {// 注册结果
+				String reslutData = responseData.getHexdata();
+				if (reslutData.equals("01")) {
+					UIHelper.showToask(appContext, "注册成功");
+					Intent intent = new Intent(BaseActivity.this,
+							SettingActivity.class);
+					startActivity(intent);
+					appManager.startBeat();// 开始心跳
+
+					pb_text.setVisibility(View.GONE);
+
+				} else if (reslutData.equals("02")) {
+					UIHelper.showToask(appContext, "注册失败");
+
+					pb_text.setVisibility(View.VISIBLE);
+					pb_text.setText("注册失败");
+
+				}
+
+			}
+
+			onReceveData(responseData);// 传递子activity实现
+
+		}
+
+	}
+
+	protected abstract void onReceveData(ResponseData responseData);
+
+	/**
+	 * 连接服务器 wanglu 泰得利通
+	 */
+	private void connectServer() {
+
+		pb_text.setVisibility(View.VISIBLE);
+		pb_text.setText("未连接");
+		SynTask.connectServer(SocketClient.getSocketClient());// ;连接服务器
 	}
 
 	private void initUI() {
@@ -118,6 +265,21 @@ public abstract class BaseActivity extends Activity {
 	protected void onBack() {
 		appManager.finishActivity(this);
 
+	}
+
+	@Override
+	protected void onStart() {
+
+		super.onStart();
+		registAppContectStateReceiver();
+		registAppMessageReceiver();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		unregisterReceiver(appConnectStateRecever);
+		unregisterReceiver(appMessageRecever);
 	}
 
 }

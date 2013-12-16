@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.challentec.lmssseting.app.R;
@@ -48,7 +49,7 @@ public class ParamsItemAdapter extends BaseAdapter {
 
 	static class ViewHolder {
 		TextView itemName;
-		TextView itemValue;
+		ImageView itemValue;
 	
 
 	}
@@ -58,15 +59,14 @@ public class ParamsItemAdapter extends BaseAdapter {
 		StateParamsItem stateParamsItem = stateParamsItems.get(position);
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
-			convertView = View.inflate(context, R.layout.params_item_layout,
+			convertView = View.inflate(context, R.layout.state_item,
 					null);
 
 			viewHolder = new ViewHolder();
 
 			viewHolder.itemName = (TextView) convertView
-					.findViewById(R.id.params_item_name);
-			viewHolder.itemValue = (TextView) convertView
-					.findViewById(R.id.params_item_value);
+					.findViewById(R.id.tv_itemname);
+		
 			
 			
 			convertView.setTag(viewHolder);
@@ -74,7 +74,7 @@ public class ParamsItemAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		viewHolder.itemName.setText(stateParamsItem.getItemName());
-		viewHolder.itemValue.setText(stateParamsItem.getItemValue());
+		
 
 		
 		return convertView;
