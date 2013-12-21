@@ -27,6 +27,8 @@ public class Protocol {
 	public static final String C_S_BEAT = "04";// C-S心跳
 
 	public static final String C_S_HAND = "19";// C-S操作
+	
+	
 
 	/**
 	 * 解析返回数据 wanglu 泰得利通

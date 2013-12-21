@@ -60,7 +60,7 @@
                         android:text="主板II" />
 
                     <EditText
-                        android:id="@+id/main_login_et_tel"
+                        android:id="@+id/setting_et_mbmack"
                         android:layout_width="fill_parent"
                         android:layout_height="43dip"
                         android:layout_marginLeft="3dip"
@@ -86,7 +86,7 @@
                         android:text="采集板II" />
 
                     <EditText
-                        android:id="@+id/main_et_vecode"
+                        android:id="@+id/setting_et_collectboard"
                         android:layout_width="fill_parent"
                         android:layout_height="43dip"
                         android:layout_below="@+id/main_horizontal_devider"

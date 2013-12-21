@@ -74,9 +74,7 @@ public final class R {
         public static final int iv_item_icon=0x7f09001e;
         public static final int main_btn_connect=0x7f09000a;
         public static final int main_btn_login=0x7f090010;
-        public static final int main_et_vecode=0x7f09000f;
         public static final int main_horizontal_devider=0x7f090007;
-        public static final int main_login_et_tel=0x7f09000e;
         public static final int main_login_ip=0x7f090006;
         public static final int main_login_port=0x7f090009;
         public static final int main_pb_load=0x7f09000b;
@@ -91,6 +89,8 @@ public final class R {
         public static final int pb_load=0x7f09001a;
         public static final int pb_load_tv=0x7f09001b;
         public static final int pb_text=0x7f090018;
+        public static final int setting_et_collectboard=0x7f09000f;
+        public static final int setting_et_mbmack=0x7f09000e;
         public static final int setting_rl_floor_set=0x7f090011;
         public static final int setting_rl_state_query=0x7f090012;
         public static final int setting_tv_lock_floor=0x7f09000c;

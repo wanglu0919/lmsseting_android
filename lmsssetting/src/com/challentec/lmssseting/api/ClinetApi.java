@@ -41,4 +41,32 @@ public class ClinetApi {
 		return apiData;
 		
 	}
+	
+	/**
+	 * 解锁电梯数据
+	 * @param mbmac
+	 * @param collectBoard
+	 * @param isLock
+	 * @return
+	 */
+	public static String getLockFoor(String mbmacHexStr,Integer collectBoard,boolean isLock){
+		
+		String mb=DataPaseUtil.bytes2hexStr(mbmacHexStr.getBytes());
+		
+		int len=mb.length()/2+1+1+3;//04 +mc+caij+suoti
+		String hexLen=DataPaseUtil.getHexLen(len);
+		String lock="01";//锁体
+		if(!isLock){
+			lock="03";//解锁
+		}
+		String collectBoardHex=DataPaseUtil.getHexStr(collectBoard, 4);
+		String subCollectBoardHex=collectBoardHex.substring(2);//取后面3字节
+		String apiData=Protocol.HEAD+hexLen+Protocol.C_S_HAND+AppManager.getMac()+"04"+mb+subCollectBoardHex+lock;
+		
+		LogUtil.i(LogUtil.LOG_TAG_WRITE_DATA, "锁体数据"+apiData+" mbmacHexStr"+mbmacHexStr+";subCollectBoardHex:"+subCollectBoardHex);
+		
+		return apiData;
+				
+		
+	}
 }
