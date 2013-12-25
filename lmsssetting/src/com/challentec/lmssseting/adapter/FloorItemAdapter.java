@@ -63,6 +63,13 @@ public class FloorItemAdapter extends BaseAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+		
+		
+		if (floor.isHightLinght()) {// 高亮
+			viewHolder.itemName.setBackgroundResource(R.drawable.item_btn_bg_hight);
+		} else {
+			viewHolder.itemName.setBackgroundResource(R.drawable.item_btn_bg);
+		}
 
 		viewHolder.itemName.setText(floor.getItemName());
 

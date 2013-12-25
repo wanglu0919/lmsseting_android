@@ -43,7 +43,7 @@ public abstract class BaseActivity extends Activity {
 	protected View mainView;// 中间视图view
 	protected AppManager appManager;
 	private AppConnectStateRecever appConnectStateRecever;
-
+	private Button head_btn_save;//保存
 	protected AppMessageRecever appMessageRecever;
 	protected SynTask SynTask;
 	protected AppContext appContext;
@@ -230,7 +230,24 @@ public abstract class BaseActivity extends Activity {
 				onBack();
 			}
 		});
+		head_btn_save.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onSave();
+				
+			}
+		});
+	}
+	
 
+	/**
+	 * 保存 
+	 *wanglu 泰得利通
+	 */
+	protected void onSave() {
+	
+		
 	}
 
 	/**
@@ -240,12 +257,23 @@ public abstract class BaseActivity extends Activity {
 	 */
 	private void findViews() {
 		head_btn_back = (Button) findViewById(R.id.head_btn_back);// 返回
+		head_btn_save=(Button) findViewById(R.id.head_btn_save);//保存
 		head_tv_title = (TextView) findViewById(R.id.head_tv_title);
 		base_main_llview = (FrameLayout) findViewById(R.id.base_main_llview);
 		pb_head = (ProgressBar) findViewById(R.id.pb_head);
 		pb_text = (TextView) findViewById(R.id.pb_text);
+		
 		mainView = View.inflate(this, getMainViewLayoutId(), null);
 
+	}
+	
+	protected void showSaveButton(boolean isShow){
+		if(isShow){
+			head_btn_save.setVisibility(View.VISIBLE);
+		}else{
+			head_btn_save.setVisibility(View.GONE);
+		}
+		
 	}
 
 	@Override

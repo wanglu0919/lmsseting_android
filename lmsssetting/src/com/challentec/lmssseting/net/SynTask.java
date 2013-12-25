@@ -3,6 +3,7 @@ package com.challentec.lmssseting.net;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import android.os.Message;
 
@@ -25,20 +26,19 @@ public class SynTask {
 	private SynHandler handler;//
 	private SocketClient socketClient;
 	private AppContext context;
-	
 
 	public SynTask(SynHandler handler, AppContext context) {
 		this.handler = handler;
 		this.handler.setContext(context);
 		this.context = context;
-		
+
 		socketClient = SocketClient.getSocketClient();
 	}
 
 	public SynTask(AppContext context) {
 
 		this.context = context;
-		
+
 		socketClient = SocketClient.getSocketClient();
 	}
 
@@ -160,10 +160,17 @@ public class SynTask {
 						LogUtil.i(LogUtil.LOG_TAG_READ, "读到了数据:" + responseData);
 
 						if (responseData != null) {
-							ResponseData rd = Protocol.pase(responseData);
-							if (rd != null) {
-								HandlerMessage.handlerMessage(context, rd);
+							List<ResponseData> rds = Protocol
+									.pase(responseData);
+
+							if (rds.size() > 0) {
+
+								for (ResponseData rd : rds) {
+									HandlerMessage.handlerMessage(context, rd);
+								}
+
 							}
+
 						}
 					} catch (IOException e) {
 

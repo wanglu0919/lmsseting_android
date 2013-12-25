@@ -211,10 +211,11 @@ public class MainActivity extends Activity {
 		main_login_ip = (EditText) findViewById(R.id.main_login_ip);
 		main_login_port = (EditText) findViewById(R.id.main_login_port);
 		load_view = (LoadProgressView) findViewById(R.id.main_pb_load);
-		//main_login_ip.setText("61.160.96.205");
-		main_login_ip.setText("172.16.40.233");
+		main_login_ip.setText("61.160.96.205");
+	//	main_login_ip.setText("172.16.40.233");
 		//main_login_ip.setText("172.16.40.19");
 		main_login_port.setText("9704");
+		
 
 	}
 

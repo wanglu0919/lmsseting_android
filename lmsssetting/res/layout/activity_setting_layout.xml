@@ -97,7 +97,7 @@
                 </RelativeLayout>
 
                 <Button
-                    android:id="@+id/main_btn_login"
+                    android:id="@+id/setting_btn_set"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dip"
